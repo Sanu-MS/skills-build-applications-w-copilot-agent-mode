@@ -1,9 +1,15 @@
 import CollectionPage from './CollectionPage'
 
+const API_ORIGIN = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://127.0.0.1:8000'
+
+const LEADERBOARD_API_ENDPOINT = `${API_ORIGIN}/api/leaderboard/`
+
 function Leaderboard() {
   return (
     <CollectionPage
-      component="leaderboard"
+      endpointUrl={LEADERBOARD_API_ENDPOINT}
       title="Leaderboard"
       description="Current weekly standings for the OctoFit challenge."
       emptyMessage="No leaderboard entries were returned by the API."

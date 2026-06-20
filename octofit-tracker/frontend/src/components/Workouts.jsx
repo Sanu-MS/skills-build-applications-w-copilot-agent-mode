@@ -1,9 +1,15 @@
 import CollectionPage from './CollectionPage'
 
+const API_ORIGIN = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://127.0.0.1:8000'
+
+const WORKOUTS_API_ENDPOINT = `${API_ORIGIN}/api/workouts/`
+
 function Workouts() {
   return (
     <CollectionPage
-      component="workouts"
+      endpointUrl={WORKOUTS_API_ENDPOINT}
       title="Workouts"
       description="Suggested training sessions available in the system."
       emptyMessage="No workouts were returned by the API."
