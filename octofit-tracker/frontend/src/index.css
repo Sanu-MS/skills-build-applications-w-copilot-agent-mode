@@ -21,6 +21,10 @@ body {
   background: #0c1220;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
 }

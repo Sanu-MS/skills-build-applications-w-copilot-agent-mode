@@ -1,81 +1,58 @@
 .octofit-shell {
   min-height: 100vh;
-  position: relative;
-  overflow: hidden;
   background:
-    radial-gradient(circle at top left, rgba(255, 168, 76, 0.22), transparent 30%),
+    radial-gradient(circle at top left, rgba(255, 168, 76, 0.22), transparent 28%),
     radial-gradient(circle at right center, rgba(0, 172, 255, 0.18), transparent 26%),
     linear-gradient(180deg, #0c1220 0%, #111a2d 45%, #0a0f19 100%);
 }
 
-.octofit-glow {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(40px);
-  opacity: 0.55;
-  pointer-events: none;
+.octofit-header {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  backdrop-filter: blur(18px);
 }
 
-.octofit-glow-left {
-  top: 8rem;
-  left: -4rem;
-  width: 18rem;
-  height: 18rem;
-  background: rgba(250, 191, 94, 0.45);
-}
-
-.octofit-glow-right {
-  right: -5rem;
-  bottom: 6rem;
-  width: 22rem;
-  height: 22rem;
-  background: rgba(56, 189, 248, 0.35);
-}
-
-.hero-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.75fr);
-  gap: 1.5rem;
-  align-items: stretch;
-}
-
-.hero-copy,
-.hero-card,
-.feature-card {
-  backdrop-filter: blur(20px);
-  background: rgba(10, 15, 25, 0.72);
+.octofit-nav,
+.octofit-view,
+.octofit-note {
+  background: rgba(10, 15, 25, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
 }
 
-.hero-copy {
-  padding: 2.25rem;
-  border-radius: 1.75rem;
+.octofit-nav-link {
+  color: rgba(255, 255, 255, 0.72);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
 }
 
-.hero-card,
-.feature-card {
+.octofit-nav-link:hover,
+.octofit-nav-link.active {
+  color: #ffffff;
+  background: rgba(244, 184, 96, 0.16);
+}
+
+.octofit-view,
+.octofit-note {
   border-radius: 1.5rem;
 }
 
-.hero-card {
+.octofit-note {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
+  justify-content: center;
 }
 
-.hero-logo {
+.octofit-logo {
   display: block;
-  width: 6rem;
-  height: 6rem;
-  object-fit: cover;
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   background: rgba(255, 255, 255, 0.08);
-  margin-bottom: 1.25rem;
 }
 
-.eyebrow,
+.octofit-eyebrow,
 .feature-kicker {
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -84,53 +61,41 @@
   font-weight: 700;
 }
 
-.hero-copy .lead {
-  max-width: 52rem;
+.octofit-code {
+  color: #f8d59b;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.4rem;
 }
 
-.stack-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.octofit-table {
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.04);
+  --bs-table-color: rgba(255, 255, 255, 0.9);
+  --bs-table-border-color: rgba(255, 255, 255, 0.1);
 }
 
-.stack-row:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.stack-label {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
-}
-
-.stack-value {
-  color: #ffffff;
+.octofit-table thead th {
+  color: rgba(255, 255, 255, 0.65);
   font-weight: 600;
-  text-align: right;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }
 
-.feature-card {
-  padding: 1.5rem;
-}
-
-@media (max-width: 991.98px) {
-  .hero-panel {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-copy {
-    padding: 1.5rem;
-  }
+.octofit-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 @media (max-width: 575.98px) {
-  .hero-copy,
-  .hero-card,
-  .feature-card {
+  .octofit-view,
+  .octofit-note {
     border-radius: 1.25rem;
+  }
+
+  .octofit-metrics {
+    gap: 0.5rem 1rem;
   }
 }
