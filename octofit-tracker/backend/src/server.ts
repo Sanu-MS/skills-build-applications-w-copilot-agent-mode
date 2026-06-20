@@ -2,9 +2,16 @@ import 'dotenv/config'
 
 import app from './app'
 import { connectDatabase } from './config/database'
-import { getBaseUrl } from './config/baseUrl'
 
 const port = Number(process.env.PORT ?? 8000)
+
+function getBaseUrl() {
+  const codespaceName = process.env.CODESPACE_NAME
+
+  return codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev`
+    : 'http://localhost:8000'
+}
 
 async function startServer() {
   await connectDatabase()
