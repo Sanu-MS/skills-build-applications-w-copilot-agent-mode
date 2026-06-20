@@ -8,9 +8,10 @@ const port = Number(process.env.PORT ?? 8000)
 
 async function startServer() {
   await connectDatabase()
+  const baseUrl = getBaseUrl()
 
   app.listen(port, () => {
-    console.log(`OctoFit Tracker API listening at ${getBaseUrl()}`)
+    console.log(`OctoFit Tracker API listening at ${baseUrl} on port ${port}`)
   })
 }
 

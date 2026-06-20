@@ -10,8 +10,9 @@ const baseUrl_1 = require("./config/baseUrl");
 const port = Number(process.env.PORT ?? 8000);
 async function startServer() {
     await (0, database_1.connectDatabase)();
+    const baseUrl = (0, baseUrl_1.getBaseUrl)();
     app_1.default.listen(port, () => {
-        console.log(`OctoFit Tracker API listening at ${(0, baseUrl_1.getBaseUrl)()}`);
+        console.log(`OctoFit Tracker API listening at ${baseUrl} on port ${port}`);
     });
 }
 startServer().catch((error) => {
