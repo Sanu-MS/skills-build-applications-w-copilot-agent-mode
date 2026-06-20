@@ -1,4 +1,3 @@
-// Define VITE_CODESPACE_NAME in .env.local for Codespaces builds so API URLs can resolve correctly.
 const LOCAL_API_ORIGIN = 'http://127.0.0.1:8000'
 
 export function getApiOrigin() {
@@ -24,21 +23,32 @@ export function normalizeCollectionResponse(payload) {
   }
 
   const items =
-    Array.isArray(payload?.items) ? payload.items :
-    Array.isArray(payload?.results) ? payload.results :
-    Array.isArray(payload?.data) ? payload.data :
-    []
+    Array.isArray(payload?.items)
+      ? payload.items
+      : Array.isArray(payload?.results)
+        ? payload.results
+        : Array.isArray(payload?.data)
+          ? payload.data
+          : []
 
   const total =
-    typeof payload?.count === 'number' ? payload.count :
-    typeof payload?.total === 'number' ? payload.total :
-    typeof payload?.totalCount === 'number' ? payload.totalCount :
-    items.length
+    typeof payload?.count === 'number'
+      ? payload.count
+      : typeof payload?.total === 'number'
+        ? payload.total
+        : typeof payload?.totalCount === 'number'
+          ? payload.totalCount
+          : items.length
 
   return {
     items,
     page: typeof payload?.page === 'number' ? payload.page : null,
-    pageSize: typeof payload?.pageSize === 'number' ? payload.pageSize : typeof payload?.limit === 'number' ? payload.limit : null,
+    pageSize:
+      typeof payload?.pageSize === 'number'
+        ? payload.pageSize
+        : typeof payload?.limit === 'number'
+          ? payload.limit
+          : null,
     total,
   }
 }

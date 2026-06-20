@@ -1,15 +1,9 @@
 import CollectionPage from './CollectionPage'
 
-const API_ORIGIN = import.meta.env.VITE_CODESPACE_NAME
-  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev`
-  : 'http://127.0.0.1:8000'
-
-const TEAMS_API_ENDPOINT = `${API_ORIGIN}/api/teams/`
-
 function Teams() {
   return (
     <CollectionPage
-      endpointUrl={TEAMS_API_ENDPOINT}
+      component="teams"
       title="Teams"
       description="Competitive teams and their roster assignments."
       emptyMessage="No teams were returned by the API."

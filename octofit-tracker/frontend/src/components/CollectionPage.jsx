@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
+import { fetchCollection } from '../lib/octofitApi'
+
 function CollectionPage({
-  endpointUrl,
+  component,
   title,
   description,
   columns,
@@ -24,42 +26,7 @@ function CollectionPage({
       setState((currentState) => ({ ...currentState, loading: true, error: null }))
 
       try {
-        const response = await fetch(endpointUrl)
-
-        if (!response.ok) {
-          throw new Error(`Failed to load ${endpointUrl}: ${response.status} ${response.statusText}`)
-        }
-
-        const payload = await response.json()
-        const items =
-          Array.isArray(payload)
-            ? payload
-            : Array.isArray(payload?.items)
-              ? payload.items
-              : Array.isArray(payload?.results)
-                ? payload.results
-                : Array.isArray(payload?.data)
-                  ? payload.data
-                  : []
-
-        const nextState = {
-          items,
-          page: typeof payload?.page === 'number' ? payload.page : null,
-          pageSize:
-            typeof payload?.pageSize === 'number'
-              ? payload.pageSize
-              : typeof payload?.limit === 'number'
-                ? payload.limit
-                : null,
-          total:
-            typeof payload?.count === 'number'
-              ? payload.count
-              : typeof payload?.total === 'number'
-                ? payload.total
-                : typeof payload?.totalCount === 'number'
-                  ? payload.totalCount
-                  : items.length,
-        }
+        const nextState = await fetchCollection(component)
 
         if (active) {
           setState({
@@ -94,7 +61,7 @@ function CollectionPage({
       <div className="card-body p-4 p-lg-5">
         <div className="d-flex flex-column flex-lg-row gap-3 justify-content-between align-items-lg-end mb-4">
           <div>
-            <p className="octofit-eyebrow mb-2">{endpointUrl}</p>
+            <p className="octofit-eyebrow mb-2">{component}</p>
             <h1 className="h2 fw-bold mb-2 text-white">{title}</h1>
             <p className="text-white-50 mb-0">{description}</p>
           </div>
